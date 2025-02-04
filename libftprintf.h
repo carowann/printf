@@ -24,5 +24,6 @@
 
 int	ft_printf(const char *format, ...);
 int check_param(va_list arg, char c);
+void ft_putnbr_hex_fd(unsigned int n, int fd);
 
 #endif
