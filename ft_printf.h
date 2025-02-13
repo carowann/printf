@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/29 17:47:53 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/02/13 17:18:47 by cwannhed         ###   ########.fr       */
+/*   Created: 2025/02/13 16:59:31 by cwannhed          #+#    #+#             */
+/*   Updated: 2025/02/13 17:08:17 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-int	ft_putstr_fd(char *s, int fd)
-{
-	int	len;
+# include <stdarg.h>
+# include <stddef.h>
+# include <stdio.h>
+# include <stdlib.h>
 
-	if (s == NULL)
-		return (ft_putstr_fd("(null)", fd));
-	len = ft_strlen(s);
-	while (*s)
-	{
-		ft_putchar_fd(*s, fd);
-		s++;
-	}
-	return (len);
-}
+# ifndef LIBFT_H
+#  include "Libft/libft.h"
+# endif
+
+int	ft_printf(const char *format, ...);
+int	check_param(va_list arg, char c);
+
+#endif

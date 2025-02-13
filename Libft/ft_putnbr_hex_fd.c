@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr_hex_fd.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/04 15:29:07 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/02/04 21:15:19 by cwannhed         ###   ########.fr       */
+/*   Created: 2025/02/13 12:26:02 by cwannhed          #+#    #+#             */
+/*   Updated: 2025/02/13 17:03:29 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
-int main()
+#include "libft.h"
+
+int	ft_putnbr_hex_fd(unsigned int n, int fd, char letter_case)
 {
-	ft_printf("My printf: %c\n", 'a');
-	printf("OG printf: %c\n", 'a');
-	ft_printf("My printf: %s\n", "stringa");
-	printf("OG printf: %s\n", "stringa");
-	ft_printf("My printf: %d\n", 10);
-	printf("OG printf: %d\n", 10);
-	ft_printf("My printf: %x\n", 255);
-	printf("OG printf: %x\n", 255);
-	return (0);
+	int	count;
+
+	count = 0;
+	if (n == 0)
+	{
+		count += (ft_putchar_fd('0', fd));
+		return (count);
+	}
+	if (n >= 16)
+		count += ft_putnbr_hex_fd(n / 16, fd, letter_case);
+	if (n % 16 < 10)
+		count += ft_putchar_fd('0' + (n % 16), fd);
+	else
+		count += ft_putchar_fd(letter_case + (n % 16 - 10), fd);
+	return (count);
 }
